@@ -6,7 +6,7 @@ manually adapted
 
 ## how to use it
 - simply copy the index.d.ts file to the node_modules/@types/webmidi.js folder (quick & dirty)
-- or copy the index.d.ts file into a project folder a declare the types in your tsconfig.json file (see: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
+- or copy the index.d.ts file into a project folder and declare the types in your tsconfig.json file (see: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
 
 ## convertion steps
 - Array > Array<any>
