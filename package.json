@@ -1,0 +1,38 @@
+{
+  "name": "definitelytyped-webmidi.js",
+  "version": "0.1.0",
+  "description": "d.ts file for webmidi.js",
+  "author": "S.Albert",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/s-albert/definitelytyped-webmidi.js.git"
+  },
+  "opts": {
+    "template": "./node_modules/jsdoc2dts"
+  },
+  "bugs": {
+    "url": "https://github.com/s-albert/definitelytyped-webmidi.js/issues"
+  },
+  "keywords": [
+    "midi",
+    "message",
+    "web",
+    "browser",
+    "front-end",
+    "webmidi api"
+  ],
+  "homepage": "https://github.com/s-albert/definitelytyped-webmidi.js",
+  "license": "MIT",
+  "engines": {
+    "node": ">0.6.x"
+  },
+  "devDependencies": {
+    "@types/webmidi": "^2.0.2",
+    "jsdoc": "^3.5.5",
+    "jsdoc2dts": "^1.0.5"
+  },
+  "dependencies": {},
+  "scripts": {
+    "convert" : "jsdoc -t node_modules/jsdoc2dts webmidi.js"
+  }
+}
