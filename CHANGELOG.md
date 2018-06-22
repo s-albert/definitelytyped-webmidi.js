@@ -2,7 +2,7 @@
 All notable changes to the "definitelytyped-webmidi.js" will be documented in this file.
 
 ## [1.0.0] - 2018-06-17
-### manual convertion steps
+### jsdoc2dts generation and manual convertion steps
 - Array > Array<any>
 - function > declare function
 - _functions (@protected) removed
@@ -11,7 +11,8 @@ All notable changes to the "definitelytyped-webmidi.js" will be documented in th
 - String > string
 - IMidi... > Object
 
-## [1.0.0] - 2018-06-17
+## [1.1.0] - 2018-06-17
+- any replaced
 
 ### webmidi
 @types/webmidi causes a name clash when importing webmidi of webmidi.js.
