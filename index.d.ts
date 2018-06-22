@@ -1,6 +1,6 @@
 // Type definitions for webmidi.js
 // Project: https://github.com/djipco/webmidi
-// Definitions by: S.Albert <[AUTHOR URL]>
+// Definitions by: S.Albert <https://github.com/s-albert>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 // @types/webmidi causes a name clash when importing webmidi of webmidi.js.
@@ -66,11 +66,11 @@ declare namespace WebMidi {
     sysexEnabled: boolean;
   }
 
-  type MIDIPortType = "input" | "output";
+  type MIDIPortType = 'input' | 'output';
 
-  type MIDIPortDeviceState = "disconnected" | "connected";
+  type MIDIPortDeviceState = 'disconnected' | 'connected';
 
-  type MIDIPortConnectionState = "open" | "closed" | "pending";
+  type MIDIPortConnectionState = 'open' | 'closed' | 'pending';
 
   interface MIDIPort extends EventTarget {
     /**
@@ -205,7 +205,6 @@ declare namespace WebMidi {
   }
 }
 
-
 /**
  * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
  * two things: sending outgoing MIDI messages and reacting to incoming MIDI messages.
@@ -274,78 +273,84 @@ declare namespace WebMidi {
  */
 
 declare class WebMidi {
-   /**
-    * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
-    * two things: sending outgoing MIDI messages and reacting to incoming MIDI messages.
-    *
-    * Sending MIDI messages is done via an `Output` object. All available outputs can be accessed in
-    * the `WebMidi.outputs` array. There is one `Output` object for each output port available on
-    * your system. Similarly, reacting to MIDI messages as they are coming in is simply a matter of
-    * adding a listener to an `Input` object. Similarly, all inputs can be found in the
-    * `WebMidi.inputs` array.
-    *
-    * Please note that a single hardware device might create more than one input and/or output ports.
-    *
-    * #### Sending messages
-    *
-    * To send MIDI messages, you simply need to call the desired method (`playNote()`,
-    * `sendPitchBend()`, `stopNote()`, etc.) from an `Output` object and pass in the appropriate
-    * parameters. All the native MIDI communication will be handled for you. The only additional
-    * thing that needs to be done is to first enable `WebMidi`. Here is an example:
-    *
-    *      WebMidi.enable(function(err) {
-    *        if (err) console.log("An error occurred", err);
-    *        WebMidi.outputs[0].playNote("C3");
-    *      });
-    *
-    * The code above, calls the `WebMidi.enable()` method. Upon success, this method executes the
-    * callback function specified as a parameter. In this case, the callback calls the `playnote()`
-    * function to play a 3rd octave C on the first available output port.
-    *
-    * #### Receiving messages
-    *
-    * Receiving messages is just as easy. You simply have to set a callback function to be triggered
-    * when a specific MIDI message is received. For example, here's how to listen for pitch bend
-    * events on the first input port:
-    *
-    *      WebMidi.enable(function(err) {
-    *        if (err) console.log("An error occurred", err);
-    *
-    *        WebMidi.inputs[0].addListener('pitchbend', "all", function(e) {
-    *          console.log("Pitch value: " + e.value);
-    *        });
-    *
-    *      });
-    *
-    * As you can see, this library is much easier to use than the native Web MIDI API. No need to
-    * manually craft or decode binary MIDI messages anymore!
-    *
-    * @class WebMidi
-    * @static
-    *
-    * @throws Error WebMidi is a singleton, it cannot be instantiated directly.
-    *
-    * @todo  Implement port statechange events.
-    * @todo  Test with the Node.js version of Jazz Plugin. Initial tests are promising.
-    * @todo  Complete tests
-    * @todo  Refine "options" param of addListener. Allow listening for specific controller change.
-    * @todo  Add once() function.
-    * @todo  Yuidoc does not allow multiple exceptions (@throws) for a single method ?!
-    * @todo  Should the sendsysex method allow Uint8Array param ?
-    * @todo  allow adjustment of the start point for octaves (-2, -1, 0, etc.). See:
-    *        https://en.wikipedia.org/wiki/Scientific_pitch_notation
-    * @todo  Add explicit support for universal system exclusive messages, real time (0x7F and non-real time)
-    * @todo  Implement the show control protocol subset.
-    * @todo  Add methods for channel mode messages
-    * @todo  Allow send() to accept Uint8Array output.send(new Uint8Array([0x90, 0x45, 0x7f]));
-    *
-    */
-   constructor();
+  /**
+   * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
+   * two things: sending outgoing MIDI messages and reacting to incoming MIDI messages.
+   *
+   * Sending MIDI messages is done via an `Output` object. All available outputs can be accessed in
+   * the `WebMidi.outputs` array. There is one `Output` object for each output port available on
+   * your system. Similarly, reacting to MIDI messages as they are coming in is simply a matter of
+   * adding a listener to an `Input` object. Similarly, all inputs can be found in the
+   * `WebMidi.inputs` array.
+   *
+   * Please note that a single hardware device might create more than one input and/or output ports.
+   *
+   * #### Sending messages
+   *
+   * To send MIDI messages, you simply need to call the desired method (`playNote()`,
+   * `sendPitchBend()`, `stopNote()`, etc.) from an `Output` object and pass in the appropriate
+   * parameters. All the native MIDI communication will be handled for you. The only additional
+   * thing that needs to be done is to first enable `WebMidi`. Here is an example:
+   *
+   *      WebMidi.enable(function(err) {
+   *        if (err) console.log("An error occurred", err);
+   *        WebMidi.outputs[0].playNote("C3");
+   *      });
+   *
+   * The code above, calls the `WebMidi.enable()` method. Upon success, this method executes the
+   * callback function specified as a parameter. In this case, the callback calls the `playnote()`
+   * function to play a 3rd octave C on the first available output port.
+   *
+   * #### Receiving messages
+   *
+   * Receiving messages is just as easy. You simply have to set a callback function to be triggered
+   * when a specific MIDI message is received. For example, here's how to listen for pitch bend
+   * events on the first input port:
+   *
+   *      WebMidi.enable(function(err) {
+   *        if (err) console.log("An error occurred", err);
+   *
+   *        WebMidi.inputs[0].addListener('pitchbend', "all", function(e) {
+   *          console.log("Pitch value: " + e.value);
+   *        });
+   *
+   *      });
+   *
+   * As you can see, this library is much easier to use than the native Web MIDI API. No need to
+   * manually craft or decode binary MIDI messages anymore!
+   *
+   * @class WebMidi
+   * @static
+   *
+   * @throws Error WebMidi is a singleton, it cannot be instantiated directly.
+   *
+   * @todo  Implement port statechange events.
+   * @todo  Test with the Node.js version of Jazz Plugin. Initial tests are promising.
+   * @todo  Complete tests
+   * @todo  Refine "options" param of addListener. Allow listening for specific controller change.
+   * @todo  Add once() function.
+   * @todo  Yuidoc does not allow multiple exceptions (@throws) for a single method ?!
+   * @todo  Should the sendsysex method allow Uint8Array param ?
+   * @todo  allow adjustment of the start point for octaves (-2, -1, 0, etc.). See:
+   *        https://en.wikipedia.org/wiki/Scientific_pitch_notation
+   * @todo  Add explicit support for universal system exclusive messages, real time (0x7F and non-real time)
+   * @todo  Implement the show control protocol subset.
+   * @todo  Add methods for channel mode messages
+   * @todo  Allow send() to accept Uint8Array output.send(new Uint8Array([0x90, 0x45, 0x7f]));
+   *
+   */
+  constructor();
+}
 
+interface IMessages {
+  value: {};
+  writable: boolean;
+  enumerable: boolean;
+  configurable: boolean;
 }
 
 export interface MIDI_SYSTEM_MESSAGES {
-   MIDI_SYSTEM_MESSAGES: any;
+  MIDI_SYSTEM_MESSAGES: IMessages;
 }
 
 /**
@@ -361,10 +366,10 @@ export interface MIDI_SYSTEM_MESSAGES {
  *
  * @since 2.0.0
  */
-export var MIDI_SYSTEM_MESSAGES: Object;
+export var MIDI_SYSTEM_MESSAGES: IMessages;
 
 export interface MIDI_CHANNEL_MESSAGES {
-   MIDI_CHANNEL_MESSAGES: any;
+  MIDI_CHANNEL_MESSAGES: IMessages;
 }
 
 /**
@@ -376,10 +381,10 @@ export interface MIDI_CHANNEL_MESSAGES {
  *
  * @since 2.0.0
  */
-export var MIDI_CHANNEL_MESSAGES: Object;
+export var MIDI_CHANNEL_MESSAGES: IMessages;
 
 export interface MIDI_REGISTERED_PARAMETER {
-   MIDI_REGISTERED_PARAMETER: any;
+  MIDI_REGISTERED_PARAMETER: IMessages;
 }
 
 /**
@@ -393,10 +398,10 @@ export interface MIDI_REGISTERED_PARAMETER {
  *
  * @since 2.0.0
  */
-export var MIDI_REGISTERED_PARAMETER: Object;
+export var MIDI_REGISTERED_PARAMETER: IMessages;
 
 export interface MIDI_CONTROL_CHANGE_MESSAGES {
-   MIDI_CONTROL_CHANGE_MESSAGES: any;
+  MIDI_CONTROL_CHANGE_MESSAGES: IMessages;
 }
 
 /**
@@ -412,10 +417,10 @@ export interface MIDI_CONTROL_CHANGE_MESSAGES {
  *
  * @since 2.0.0
  */
-export var MIDI_CONTROL_CHANGE_MESSAGES: Object;
+export var MIDI_CONTROL_CHANGE_MESSAGES: IMessages;
 
 export interface MIDI_CHANNEL_MODE_MESSAGES {
-   MIDI_CHANNEL_MODE_MESSAGES: any;
+  MIDI_CHANNEL_MODE_MESSAGES: IMessages;
 }
 
 /**
@@ -428,7 +433,7 @@ export interface MIDI_CHANNEL_MODE_MESSAGES {
  *
  * @since 2.0.0
  */
-export var MIDI_CHANNEL_MODE_MESSAGES: Object;
+export var MIDI_CHANNEL_MODE_MESSAGES: IMessages;
 
 /**
  * [read-only] Indicates whether the environment supports the Web MIDI API or not.
@@ -461,7 +466,7 @@ export var enabled: Boolean;
  * @type {Array}
  * @static
  */
-export var inputs: Array<any>;
+export var inputs: Array<WebMidi.MIDIInput>;
 
 /**
  * [read-only] An array of all currently available MIDI output ports.
@@ -470,7 +475,7 @@ export var inputs: Array<any>;
  * @type {Array}
  * @static
  */
-export var outputs: Array<any>;
+export var outputs: Array<WebMidi.MIDIOutput>;
 
 /**
  * [read-only] Indicates whether the interface to the host's MIDI subsystem is currently
@@ -606,7 +611,7 @@ declare function removeListener(type?: string, listener?: (() => any)): WebMidi;
  * @returns {Array}
  * @protected
  */
-export function toMIDIChannels(channel?: (number|Array<any>)): Array<any>;
+export function toMIDIChannels(channel?: number | Array<number>): Array<number>;
 
 /**
  *
@@ -626,7 +631,7 @@ export function toMIDIChannels(channel?: (number|Array<any>)): Array<any>;
  *
  * @since 2.0.0
  */
-declare function getInputById(id: string): (Input|false);
+declare function getInputById(id: string): Input | false;
 
 /**
  *
@@ -646,7 +651,7 @@ declare function getInputById(id: string): (Input|false);
  *
  * @since 2.0.0
  */
-declare function getOutputById(id: string): (Output|false);
+declare function getOutputById(id: string): Output | false;
 
 /**
  * Returns the first MIDI `Input` whose name *contains* the specified string.
@@ -668,7 +673,7 @@ declare function getOutputById(id: string): (Output|false);
  *
  * @since 2.0.0
  */
-declare function getInputByName(name: string): (Input|false);
+declare function getInputByName(name: string): Input | false;
 
 /**
  * Returns the octave number for the specified MIDI note number. The returned value will be
@@ -705,7 +710,7 @@ declare function getOctave(number: number): number;
  *
  * @since 2.0.0
  */
-declare function getOutputByName(name: string): (Output|false);
+declare function getOutputByName(name: string): Output | false;
 
 /**
  * Returns a valid MIDI note number given the specified input. The input can be a note name (C3,
@@ -719,7 +724,7 @@ declare function getOutputByName(name: string): (Output|false);
  * @throws {Error} Invalid note number.
  * @returns {Number} A valid MIDI note number (0-127).
  */
-declare function guessNoteNumber(input: (number|string)): number;
+declare function guessNoteNumber(input: number | string): number;
 
 /**
  * Returns a MIDI note number matching the note name passed in the form of a string parameter. The
@@ -751,17 +756,16 @@ declare function noteNameToNumber(name: string): number;
  * @param {MIDIInput} midiInput `MIDIInput` object
  */
 export class Input {
-   /**
-    * The `Input` object represents a MIDI input port on the host system. This object is created by
-    * the MIDI subsystem and cannot be instantiated directly.
-    *
-    * You will find all available `Input` objects in the `WebMidi.inputs` array.
-    *
-    * @class Input
-    * @param {MIDIInput} midiInput `MIDIInput` object
-    */
-   constructor(midiInput: WebMidi.MIDIInput);
-
+  /**
+   * The `Input` object represents a MIDI input port on the host system. This object is created by
+   * the MIDI subsystem and cannot be instantiated directly.
+   *
+   * You will find all available `Input` objects in the `WebMidi.inputs` array.
+   *
+   * @class Input
+   * @param {MIDIInput} midiInput `MIDIInput` object
+   */
+  constructor(midiInput: WebMidi.MIDIInput);
 }
 
 /**
@@ -836,7 +840,7 @@ export function on(): void;
  *
  * @since 2.0.0
  */
-export function getCcNameByNumber(number: number): (string|undefined);
+export function getCcNameByNumber(number: number): string | undefined;
 
 /**
  * Returns the channel mode name matching the specified number. If no match is found, the function
@@ -851,7 +855,7 @@ export function getCcNameByNumber(number: number): (string|undefined);
  *
  * @since 2.0.0
  */
-export function getChannelModeByNumber(number: number): (string|undefined);
+export function getChannelModeByNumber(number: number): string | undefined;
 
 /**
  * The `Output` object represents a MIDI output port on the host system. This object is created by
@@ -863,17 +867,16 @@ export function getChannelModeByNumber(number: number): (string|undefined);
  * @param {MIDIOutput} midiOutput Actual `MIDIOutput` object as defined by the MIDI subsystem
  */
 export class Output {
-   /**
-    * The `Output` object represents a MIDI output port on the host system. This object is created by
-    * the MIDI subsystem and cannot be instantiated directly.
-    *
-    * You will find all available `Output` objects in the `WebMidi.outputs` array.
-    *
-    * @class Output
-    * @param {MIDIOutput} midiOutput Actual `MIDIOutput` object as defined by the MIDI subsystem
-    */
-   constructor(midiOutput: WebMidi.MIDIOutput);
-
+  /**
+   * The `Output` object represents a MIDI output port on the host system. This object is created by
+   * the MIDI subsystem and cannot be instantiated directly.
+   *
+   * You will find all available `Output` objects in the `WebMidi.outputs` array.
+   *
+   * @class Output
+   * @param {MIDIOutput} midiOutput Actual `MIDIOutput` object as defined by the MIDI subsystem
+   */
+  constructor(midiOutput: WebMidi.MIDIOutput);
 }
 
 /**
@@ -905,7 +908,7 @@ export class Output {
  *
  * @return {Output} Returns the `Output` object so methods can be chained.
  */
-export function send(status: number, data?: Array<any>, timestamp?: number): Output;
+export function send(status: number, data?: Array<number>, timestamp?: number): Output;
 
 /**
  * Sends a MIDI *system exclusive* (sysex) message. The generated message will automatically be
@@ -968,7 +971,11 @@ export function send(status: number, data?: Array<any>, timestamp?: number): Out
  *
  * @return {Output} Returns the `Output` object so methods can be chained.
  */
-export function sendSysex(manufacturer: (number|Array<any>), data?: Array<any>, options?: { time?: (number|string) }): Output;
+export function sendSysex(
+  manufacturer: number | Array<number>,
+  data?: Array<number>,
+  options?: { time?: number | string }
+): Output;
 
 /**
  * Sends a *MIDI Timecode Quarter Frame* message. Please note that no processing is being done on
@@ -992,7 +999,7 @@ export function sendSysex(manufacturer: (number|Array<any>), data?: Array<any>, 
  *
  * @return {Output} Returns the `Output` object so methods can be chained.
  */
-export function sendTimecodeQuarterFrame(value: number, options?: { time?: (number|string) }): Output;
+export function sendTimecodeQuarterFrame(value: number, options?: { time?: number | string }): Output;
 
 /**
  * Sends a *Song Position* MIDI message. The value is expressed in MIDI beats (between 0 and
@@ -1015,7 +1022,7 @@ export function sendTimecodeQuarterFrame(value: number, options?: { time?: (numb
  *
  * @return {Output} Returns the `Output` object so methods can be chained.
  */
-export function sendSongPosition(value?: number, options?: { time?: (number|string) }): Output;
+export function sendSongPosition(value?: number, options?: { time?: number | string }): Output;
 
 /**
  * Sends a *Song Select* MIDI message. Beware that some devices will display position 0 as
@@ -1040,7 +1047,7 @@ export function sendSongPosition(value?: number, options?: { time?: (number|stri
  *
  * @return {Output} Returns the `Output` object so methods can be chained.
  */
-export function sendSongSelect(value: number, options?: { time?: (number|string) }): Output;
+export function sendSongSelect(value: number, options?: { time?: number | string }): Output;
 
 /**
  * Sends a *MIDI tuning request* real-time message.
@@ -1064,7 +1071,7 @@ export function sendSongSelect(value: number, options?: { time?: (number|string)
  *
  * @return {Output} Returns the `Output` object so methods can be chained.
  */
-export function sendTuningRequest(options?: { time?: (number|string) }): Output;
+export function sendTuningRequest(options?: { time?: number | string }): Output;
 
 /**
  * Sends a *MIDI Clock* real-time message. According to the standard, there are 24 MIDI Clocks
@@ -1085,7 +1092,7 @@ export function sendTuningRequest(options?: { time?: (number|string) }): Output;
  *
  * @return {Output} Returns the `Output` object so methods can be chained.
  */
-export function sendClock(options?: { time?: (number|string) }): Output;
+export function sendClock(options?: { time?: number | string }): Output;
 
 /**
  * Sends a *Start* real-time message. A MIDI Start message starts the playback of the current
@@ -1106,7 +1113,7 @@ export function sendClock(options?: { time?: (number|string) }): Output;
  *
  * @return {Output} Returns the `Output` object so methods can be chained.
  */
-export function sendStart(options?: { time?: (number|string) }): Output;
+export function sendStart(options?: { time?: number | string }): Output;
 
 /**
  * Sends a *Continue* real-time message. This resumes song playback where it was previously
@@ -1128,7 +1135,7 @@ export function sendStart(options?: { time?: (number|string) }): Output;
  *
  * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
  */
-export function sendContinue(options?: { time?: (number|string) }): WebMidi;
+export function sendContinue(options?: { time?: number | string }): WebMidi;
 
 /**
  * Sends a *Stop* real-time message. This tells the device connected to this port to stop playback
@@ -1149,7 +1156,7 @@ export function sendContinue(options?: { time?: (number|string) }): WebMidi;
  *
  * @return {Output} Returns the `Output` object so methods can be chained.
  */
-export function sendStop(options?: { time?: (number|string) }): Output;
+export function sendStop(options?: { time?: number | string }): Output;
 
 /**
  * Sends an *Active Sensing* real-time message. This tells the device connected to this port that
@@ -1171,7 +1178,7 @@ export function sendStop(options?: { time?: (number|string) }): Output;
  *
  * @return {Output} Returns the `Output` object so methods can be chained.
  */
-export function sendActiveSensing(options?: { time?: (number|string) }): Output;
+export function sendActiveSensing(options?: { time?: number | string }): Output;
 
 /**
  * Sends *Reset* real-time message. This tells the device connected to this port that is should
@@ -1192,7 +1199,7 @@ export function sendActiveSensing(options?: { time?: (number|string) }): Output;
  *
  * @return {Output} Returns the `Output` object so methods can be chained.
  */
-export function sendReset(options?: { time?: (number|string) }): Output;
+export function sendReset(options?: { time?: number | string }): Output;
 
 /**
  * Sends a MIDI **note off** message to the specified channel(s) for a single note or multiple
@@ -1236,7 +1243,11 @@ export function sendReset(options?: { time?: (number|string) }): Output;
  *
  * @return {Output} Returns the `Output` object so methods can be chained.
  */
-export function stopNote(note: (number|Array<any>|string), channel?: (number|Array<any>|string), options?: { rawVelocity?: Boolean, time?: (number|string), velocity?: number }): Output;
+export function stopNote(
+  note: number | Array<number | string> | string,
+  channel?: number | Array<number | string> | string,
+  options?: { rawVelocity?: Boolean; time?: number | string; velocity?: number }
+): Output;
 
 /**
  * Requests the playback of a single note or multiple notes on the specified channel(s). You can
@@ -1293,7 +1304,11 @@ export function stopNote(note: (number|Array<any>|string), channel?: (number|Arr
  *
  * @return {Output} Returns the `Output` object so methods can be chained.
  */
-export function playNote(note: (number|string|Array<any>), channel?: (number|Array<any>|string), options?: { duration?: number, rawVelocity?: Boolean, release?: number, time?: (number|string), velocity?: number }): Output;
+export function playNote(
+  note: number | string | Array<number | string>,
+  channel?: number | Array<number | string> | string,
+  options?: { duration?: number; rawVelocity?: Boolean; release?: number; time?: number | string; velocity?: number }
+): Output;
 
 /**
  * Sends a MIDI `key aftertouch` message to the specified channel(s) at the scheduled time. This
@@ -1330,7 +1345,12 @@ export function playNote(note: (number|string|Array<any>), channel?: (number|Arr
  *
  * @return {Output} Returns the `Output` object so methods can be chained.
  */
-export function sendKeyAftertouch(note: (number|string|Array<any>), channel?: (number|Array<any>|string), pressure?: number, options?: { time?: (number|string) }): Output;
+export function sendKeyAftertouch(
+  note: number | string | Array<number | string>,
+  channel?: number | Array<number | string> | string,
+  pressure?: number,
+  options?: { time?: number | string }
+): Output;
 
 /**
  * Sends a MIDI `control change` message to the specified channel(s) at the scheduled time. The
@@ -1432,8 +1452,12 @@ export function sendKeyAftertouch(note: (number|string|Array<any>), channel?: (n
  *
  * @return {Output} Returns the `Output` object so methods can be chained.
  */
-export function sendControlChange(controller: (number|string), value?: number, channel?: (number|Array<any>|string), options?: { time?: (number|string) }): Output;
-
+export function sendControlChange(
+  controller: number | string,
+  value?: number,
+  channel?: number | Array<number | string> | string,
+  options?: { time?: number | string }
+): Output;
 
 /**
  * Sets the specified MIDI registered parameter to the desired value. The value is defined with
@@ -1495,7 +1519,12 @@ export function sendControlChange(controller: (number|string), value?: number, c
  *
  * @returns {Output} Returns the `Output` object so methods can be chained.
  */
-export function setRegisteredParameter(parameter: (string|Array<any>), data?: (number|Array<any>), channel?: (number|Array<any>|string), options?: { time?: (number|string) }): Output;
+export function setRegisteredParameter(
+  parameter: string | number[2],
+  data?: number | Array<number>,
+  channel?: number | Array<number | string> | string,
+  options?: { time?: number | string }
+): Output;
 
 /**
  * Sets a non-registered parameter to the specified value. The NRPN is selected by passing in a
@@ -1548,7 +1577,12 @@ export function setRegisteredParameter(parameter: (string|Array<any>), data?: (n
  *
  * @returns {Output} Returns the `Output` object so methods can be chained.
  */
-export function setNonRegisteredParameter(parameter: Array<any>, data?: (number|Array<any>), channel?: (number|Array<any>|string), options?: { time?: (number|string) }): Output;
+export function setNonRegisteredParameter(
+  parameter: number[2],
+  data?: number | Array<number>,
+  channel?: number | Array<number> | string,
+  options?: { time?: number | string }
+): Output;
 
 /**
  * Increments the specified MIDI registered parameter by 1. For more specific MIDI usage
@@ -1602,7 +1636,11 @@ export function setNonRegisteredParameter(parameter: Array<any>, data?: (number|
  *
  * @returns {Output} Returns the `Output` object so methods can be chained.
  */
-export function incrementRegisteredParameter(parameter: (string|Array<any>), channel?: (number|Array<any>|string), options?: { time?: (number|string) }): Output;
+export function incrementRegisteredParameter(
+  parameter: string | number[2],
+  channel?: number | Array<number> | string,
+  options?: { time?: number | string }
+): Output;
 
 /**
  * Decrements the specified MIDI registered parameter by 1. For more specific MIDI usage
@@ -1656,7 +1694,11 @@ export function incrementRegisteredParameter(parameter: (string|Array<any>), cha
  *
  * @returns {Output} Returns the `Output` object so methods can be chained.
  */
-export function decrementRegisteredParameter(parameter: (string|Array<any>), channel?: (number|Array<any>|string), options?: { time?: (number|string) }): Output;
+export function decrementRegisteredParameter(
+  parameter: string | number[2],
+  channel?: number | Array<number> | string,
+  options?: { time?: number | string }
+): Output;
 
 /**
  * Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they
@@ -1691,7 +1733,12 @@ export function decrementRegisteredParameter(parameter: (string|Array<any>), cha
  *
  * @return {Output} Returns the `Output` object so methods can be chained.
  */
-export function setPitchBendRange(semitones?: number, cents?: number, channel?: (number|Array<any>|string), options?: { time?: (number|string) }): Output;
+export function setPitchBendRange(
+  semitones?: number,
+  cents?: number,
+  channel?: number | Array<number> | string,
+  options?: { time?: number | string }
+): Output;
 
 /**
  * Sends a modulation depth range message to the specified channel(s) so that they adjust the
@@ -1725,7 +1772,12 @@ export function setPitchBendRange(semitones?: number, cents?: number, channel?: 
  *
  * @return {Output} Returns the `Output` object so methods can be chained.
  */
-export function setModulationRange(semitones?: number, cents?: number, channel?: (number|Array<any>|string), options?: { time?: (number|string) }): Output;
+export function setModulationRange(
+  semitones?: number,
+  cents?: number,
+  channel?: number | Array<number> | string,
+  options?: { time?: number | string }
+): Output;
 
 /**
  * Sends a master tuning message to the specified channel(s). The value is decimal and must be
@@ -1760,7 +1812,11 @@ export function setModulationRange(semitones?: number, cents?: number, channel?:
  *
  * @return {Output} Returns the `Output` object so methods can be chained.
  */
-export function setMasterTuning(value?: number, channel?: (number|Array<any>|string), options?: { time?: (number|string) }): Output;
+export function setMasterTuning(
+  value?: number,
+  channel?: number | Array<number> | string,
+  options?: { time?: number | string }
+): Output;
 
 /**
  * Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter is part of the
@@ -1789,7 +1845,11 @@ export function setMasterTuning(value?: number, channel?: (number|Array<any>|str
  *
  * @return {Output} Returns the `Output` object so methods can be chained.
  */
-export function setTuningProgram(value: number, channel?: (number|Array<any>|string), options?: { time?: (number|string) }): Output;
+export function setTuningProgram(
+  value: number,
+  channel?: number | Array<number> | string,
+  options?: { time?: number | string }
+): Output;
 
 /**
  * Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is part of the
@@ -1818,7 +1878,11 @@ export function setTuningProgram(value: number, channel?: (number|Array<any>|str
  *
  * @return {Output} Returns the `Output` object so methods can be chained.
  */
-export function setTuningBank(value: number, channel?: (number|Array<any>|string), options?: { time?: (number|string) }): Output;
+export function setTuningBank(
+  value: number,
+  channel?: number | Array<number> | string,
+  options?: { time?: number | string }
+): Output;
 
 /**
  * Sends a MIDI `channel mode` message to the specified channel(s). The channel mode message to send can be specified
@@ -1859,7 +1923,12 @@ export function setTuningBank(value: number, channel?: (number|Array<any>|string
  * @return {Output} Returns the `Output` object so methods can be chained.
  *
  */
-export function sendChannelMode(command: (number|string), value?: number, channel?: (number|Array<any>|string), options?: { time?: (number|string) }): Output;
+export function sendChannelMode(
+  command: number | string,
+  value?: number,
+  channel?: number | Array<number> | string,
+  options?: { time?: number | string }
+): Output;
 
 /**
  * Sends a MIDI `program change` message to the specified channel(s) at the scheduled time.
@@ -1888,7 +1957,11 @@ export function sendChannelMode(command: (number|string), value?: number, channe
  * @return {Output} Returns the `Output` object so methods can be chained.
  *
  */
-export function sendProgramChange(program: number, channel?: (number|Array<any>|string), options?: { time?: (number|string) }): Output;
+export function sendProgramChange(
+  program: number,
+  channel?: number | Array<number> | string,
+  options?: { time?: number | string }
+): Output;
 
 /**
  * Sends a MIDI `channel aftertouch` message to the specified channel(s). For key-specific
@@ -1916,7 +1989,11 @@ export function sendProgramChange(program: number, channel?: (number|Array<any>|
  *
  * @return {Output} Returns the `Output` object so methods can be chained.
  */
-export function sendChannelAftertouch(pressure?: number, channel?: (number|Array<any>|string), options?: { time?: (number|string) }): Output;
+export function sendChannelAftertouch(
+  pressure?: number,
+  channel?: number | Array<number> | string,
+  options?: { time?: number | string }
+): Output;
 
 /**
  * Sends a MIDI `pitch bend` message to the specified channel(s) at the scheduled time.
@@ -1945,7 +2022,8 @@ export function sendChannelAftertouch(pressure?: number, channel?: (number|Array
  *
  * @return {Output} Returns the `Output` object so methods can be chained.
  */
-export function sendPitchBend(bend: number, channel?: (number|Array<any>|string), options?: { time?: (number|string) }): Output;
-
-
-
+export function sendPitchBend(
+  bend: number,
+  channel?: number | Array<number> | string,
+  options?: { time?: number | string }
+): Output;

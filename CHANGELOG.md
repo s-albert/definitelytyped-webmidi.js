@@ -11,6 +11,8 @@ All notable changes to the "definitelytyped-webmidi.js" will be documented in th
 - String > string
 - IMidi... > Object
 
+## [1.0.0] - 2018-06-17
+
 ### webmidi
 @types/webmidi causes a name clash when importing webmidi of webmidi.js.
 The compiler would not find webmidi.js, because it uses @types/webmidi instead.

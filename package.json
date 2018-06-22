@@ -1,5 +1,5 @@
 {
-  "name": "definitelytyped-webmidi.js",
+  "name": "@types/webmidi-js",
   "version": "0.1.0",
   "description": "d.ts file for webmidi.js",
   "author": "S.Albert",
@@ -16,10 +16,11 @@
   "keywords": [
     "midi",
     "message",
-    "web",
-    "browser",
-    "front-end",
-    "webmidi api"
+    "midi",
+    "definitelytyped",
+    "d.ts",
+    "webmidi",
+    "midiservice"
   ],
   "homepage": "https://github.com/s-albert/definitelytyped-webmidi.js",
   "license": "MIT",
