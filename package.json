@@ -34,6 +34,8 @@
   },
   "dependencies": {},
   "scripts": {
-    "convert" : "jsdoc -t node_modules/jsdoc2dts webmidi.js"
+    "convert" : "jsdoc -t node_modules/jsdoc2dts webmidi.js",
+    "dtsgen": "dts-gen --dt --name webmidi --template module",
+    "lint": "dtslint types/webmidi"
   }
 }

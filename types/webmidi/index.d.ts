@@ -2,6 +2,7 @@
 // Project: https://github.com/djipco/webmidi
 // Definitions by: S.Albert <https://github.com/s-albert>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
+// TypeScript Version: 2.1
 
 // @types/webmidi causes a name clash when importing webmidi of webmidi.js.
 // The compiler would not find webmidi.js, because it uses @types/webmidi instead.
@@ -611,7 +612,7 @@ declare function removeListener(type?: string, listener?: (() => any)): WebMidi;
  * @returns {Array}
  * @protected
  */
-export function toMIDIChannels(channel?: number | Array<number>): Array<number>;
+export function toMIDIChannels(channel?: number | number[]): number[];
 
 /**
  *
@@ -908,7 +909,7 @@ export class Output {
  *
  * @return {Output} Returns the `Output` object so methods can be chained.
  */
-export function send(status: number, data?: Array<number>, timestamp?: number): Output;
+export function send(status: number, data?: number[], timestamp?: number): Output;
 
 /**
  * Sends a MIDI *system exclusive* (sysex) message. The generated message will automatically be
@@ -972,8 +973,8 @@ export function send(status: number, data?: Array<number>, timestamp?: number): 
  * @return {Output} Returns the `Output` object so methods can be chained.
  */
 export function sendSysex(
-  manufacturer: number | Array<number>,
-  data?: Array<number>,
+  manufacturer: number | number[],
+  data?: number[],
   options?: { time?: number | string }
 ): Output;
 
@@ -1244,8 +1245,8 @@ export function sendReset(options?: { time?: number | string }): Output;
  * @return {Output} Returns the `Output` object so methods can be chained.
  */
 export function stopNote(
-  note: number | Array<number | string> | string,
-  channel?: number | Array<number | string> | string,
+  note: number | (number | string)[] | string,
+  channel?: number | (number | string)[] | string,
   options?: { rawVelocity?: Boolean; time?: number | string; velocity?: number }
 ): Output;
 
@@ -1305,8 +1306,8 @@ export function stopNote(
  * @return {Output} Returns the `Output` object so methods can be chained.
  */
 export function playNote(
-  note: number | string | Array<number | string>,
-  channel?: number | Array<number | string> | string,
+  note: number | string | (number | string)[],
+  channel?: number | (number | string)[] | string,
   options?: { duration?: number; rawVelocity?: Boolean; release?: number; time?: number | string; velocity?: number }
 ): Output;
 
@@ -1346,8 +1347,8 @@ export function playNote(
  * @return {Output} Returns the `Output` object so methods can be chained.
  */
 export function sendKeyAftertouch(
-  note: number | string | Array<number | string>,
-  channel?: number | Array<number | string> | string,
+  note: number | string | (number | string)[],
+  channel?: number | (number | string)[] | string,
   pressure?: number,
   options?: { time?: number | string }
 ): Output;
@@ -1455,7 +1456,7 @@ export function sendKeyAftertouch(
 export function sendControlChange(
   controller: number | string,
   value?: number,
-  channel?: number | Array<number | string> | string,
+  channel?: number | (number | string)[] | string,
   options?: { time?: number | string }
 ): Output;
 
@@ -1520,9 +1521,9 @@ export function sendControlChange(
  * @returns {Output} Returns the `Output` object so methods can be chained.
  */
 export function setRegisteredParameter(
-  parameter: string | number[2],
-  data?: number | Array<number>,
-  channel?: number | Array<number | string> | string,
+  parameter: string | number[],
+  data?: number | number[],
+  channel?: number | (number | string)[] | string,
   options?: { time?: number | string }
 ): Output;
 
@@ -1578,9 +1579,9 @@ export function setRegisteredParameter(
  * @returns {Output} Returns the `Output` object so methods can be chained.
  */
 export function setNonRegisteredParameter(
-  parameter: number[2],
-  data?: number | Array<number>,
-  channel?: number | Array<number> | string,
+  parameter: number[],
+  data?: number | number[],
+  channel?: number | number[] | string,
   options?: { time?: number | string }
 ): Output;
 
@@ -1637,8 +1638,8 @@ export function setNonRegisteredParameter(
  * @returns {Output} Returns the `Output` object so methods can be chained.
  */
 export function incrementRegisteredParameter(
-  parameter: string | number[2],
-  channel?: number | Array<number> | string,
+  parameter: string | number[],
+  channel?: number | number[] | string,
   options?: { time?: number | string }
 ): Output;
 
@@ -1695,8 +1696,8 @@ export function incrementRegisteredParameter(
  * @returns {Output} Returns the `Output` object so methods can be chained.
  */
 export function decrementRegisteredParameter(
-  parameter: string | number[2],
-  channel?: number | Array<number> | string,
+  parameter: string | number[],
+  channel?: number | number[] | string,
   options?: { time?: number | string }
 ): Output;
 
@@ -1736,7 +1737,7 @@ export function decrementRegisteredParameter(
 export function setPitchBendRange(
   semitones?: number,
   cents?: number,
-  channel?: number | Array<number> | string,
+  channel?: number | number[] | string,
   options?: { time?: number | string }
 ): Output;
 
@@ -1775,7 +1776,7 @@ export function setPitchBendRange(
 export function setModulationRange(
   semitones?: number,
   cents?: number,
-  channel?: number | Array<number> | string,
+  channel?: number | number[] | string,
   options?: { time?: number | string }
 ): Output;
 
@@ -1814,7 +1815,7 @@ export function setModulationRange(
  */
 export function setMasterTuning(
   value?: number,
-  channel?: number | Array<number> | string,
+  channel?: number | number[] | string,
   options?: { time?: number | string }
 ): Output;
 
@@ -1847,7 +1848,7 @@ export function setMasterTuning(
  */
 export function setTuningProgram(
   value: number,
-  channel?: number | Array<number> | string,
+  channel?: number | number[] | string,
   options?: { time?: number | string }
 ): Output;
 
@@ -1880,7 +1881,7 @@ export function setTuningProgram(
  */
 export function setTuningBank(
   value: number,
-  channel?: number | Array<number> | string,
+  channel?: number | number[] | string,
   options?: { time?: number | string }
 ): Output;
 
@@ -1926,7 +1927,7 @@ export function setTuningBank(
 export function sendChannelMode(
   command: number | string,
   value?: number,
-  channel?: number | Array<number> | string,
+  channel?: number | number[] | string,
   options?: { time?: number | string }
 ): Output;
 
@@ -1959,7 +1960,7 @@ export function sendChannelMode(
  */
 export function sendProgramChange(
   program: number,
-  channel?: number | Array<number> | string,
+  channel?: number | number[] | string,
   options?: { time?: number | string }
 ): Output;
 
@@ -1991,7 +1992,7 @@ export function sendProgramChange(
  */
 export function sendChannelAftertouch(
   pressure?: number,
-  channel?: number | Array<number> | string,
+  channel?: number | number[] | string,
   options?: { time?: number | string }
 ): Output;
 
@@ -2024,6 +2025,6 @@ export function sendChannelAftertouch(
  */
 export function sendPitchBend(
   bend: number,
-  channel?: number | Array<number> | string,
+  channel?: number | number[] | string,
   options?: { time?: number | string }
 ): Output;
